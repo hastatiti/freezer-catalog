@@ -12,7 +12,6 @@ import com.northrow.model.Food;
 import com.northrow.service.FoodService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController
 public class FoodController {
@@ -22,7 +21,7 @@ public class FoodController {
 
 	@PostMapping("/food")
 	@Operation(summary = "Save food")
-	public Long saveFood(@Parameter(description = "book to be saved") @RequestBody Food food) {
+	public Long saveFood(@RequestBody Food food) {
 		Food f = foodService.saveFood(food);
 		return f.getFoodId();
 	}
@@ -34,7 +33,7 @@ public class FoodController {
 	}
 
 	@PutMapping("/food/{id}")
-	@Operation(summary = "update food")
+	@Operation(summary = "Update food")
 	public Food updateFood(@PathVariable Long id, @RequestBody Food food) {
 		return foodService.updateFood(id, food);
 	}
